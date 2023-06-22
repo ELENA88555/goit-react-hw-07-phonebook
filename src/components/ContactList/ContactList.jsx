@@ -1,8 +1,7 @@
 import css from './ContactList.module.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { deleteContact, getContacts, getFilter } from 'redux/slice';
-// import { nanoid } from '@reduxjs/toolkit';
+
 import {
   selectVisibleContacts,
   selectError,
@@ -10,34 +9,20 @@ import {
 } from 'redux/selectors';
 import { deleteContactThunk, fetchContactsThunk } from 'redux/operations';
 
-// const contactId = nanoid();
-
 export const ContactList = () => {
   const dispatch = useDispatch();
   const contactsList = useSelector(selectVisibleContacts);
-  // const filter = useSelector(selectFilter);
   const error = useSelector(selectError);
   const loading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchContactsThunk());
-    
   }, [dispatch]);
 
-  // const getVisibleContacts = () => {
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(filter.toLowerCase().trim())
-  //   );
-  // };
-
-  // const tasks = useSelector(selectVisibleTasks)
-
-  const btnDeleteHandler = (id)=> {
+  const btnDeleteHandler = id => {
     dispatch(deleteContactThunk(id));
     // dispatch(fetchContactsThunk());
   };
-
-  // const contactsList = getVisibleContacts();
 
   return (
     <ul className={css.list}>

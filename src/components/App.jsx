@@ -9,16 +9,12 @@ import { fetchContactsThunk } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
 
 export const App = () => {
+  const contacts = useSelector(selectContacts);
+  const dispatch = useDispatch();
 
-   const contacts = useSelector(selectContacts);
-   const dispatch = useDispatch();
-  //  const isLoading = useSelector(selectIsLoading);
-  //  const error = useSelector(selectError);
- 
-   useEffect(() => {
-     dispatch(fetchContactsThunk());
-   }, [dispatch]);
- 
+  useEffect(() => {
+    dispatch(fetchContactsThunk());
+  }, [dispatch]);
 
   return (
     <div>
